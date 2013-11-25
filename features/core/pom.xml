@@ -28,6 +28,10 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
+	<!-- START: Updates for Features Core that supports uninstalling features repo that has uninstalled features -->
+	<groupId>org.codice</groupId>
+	<version>2.3.3.1</version>
+	<!-- END -->
     <artifactId>org.apache.karaf.features.core</artifactId>
     <packaging>bundle</packaging>
     <name>Apache Karaf :: Features :: Core</name>
@@ -58,6 +62,7 @@
         <dependency>
             <groupId>org.apache.karaf</groupId>
             <artifactId>org.apache.karaf.util</artifactId>
+			<version>2.3.3</version>  <!-- Override dependencyManagement version since this project.version now incremented to 2.3.3.1 -->
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -68,12 +73,37 @@
         <dependency>
             <groupId>org.apache.karaf.shell</groupId>
             <artifactId>org.apache.karaf.shell.console</artifactId>
+			<version>2.3.3</version>  <!-- Override dependencyManagement version since this project.version now incremented to 2.3.3.1 -->
         </dependency>
 
         <dependency>
             <groupId>org.apache.karaf.shell</groupId>
             <artifactId>org.apache.karaf.shell.obr</artifactId>
+			<version>2.3.3</version>  <!-- Override dependencyManagement version since this project.version now incremented to 2.3.3.1 -->
         </dependency>
+		
+		<!-- 
+		START: Updates for Features Core that supports uninstalling features repo that has uninstalled features.
+		Copied from karaf/pom.xml so that ${project.version} does not resolve to 2.3.3.1 
+		-->
+		<dependency>
+				<groupId>org.apache.karaf.jaas</groupId>
+				<artifactId>org.apache.karaf.jaas.boot</artifactId>
+				<version>2.3.3</version>
+		</dependency>
+		
+		 <dependency>
+				<groupId>org.apache.karaf.jaas</groupId>
+				<artifactId>org.apache.karaf.jaas.modules</artifactId>
+				<version>2.3.3</version>
+		</dependency>
+		
+		<dependency>
+				<groupId>org.apache.karaf.jaas</groupId>
+				<artifactId>org.apache.karaf.jaas.config</artifactId>
+				<version>2.3.3</version>
+		</dependency> 
+		<!-- END -->
 
         <dependency>
             <groupId>org.springframework.osgi</groupId>

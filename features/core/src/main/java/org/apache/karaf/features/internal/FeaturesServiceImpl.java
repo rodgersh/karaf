@@ -318,7 +318,12 @@ public class FeaturesServiceImpl implements FeaturesService, FrameworkListener {
             if (uninstall) {
                 RepositoryImpl repositoryImpl = repositories.get(uri);
                 for (Feature feature : repositoryImpl.getFeatures()) {
-                    this.uninstallFeature(feature.getName(), feature.getVersion());
+                    // Updated to allow uninstall of feature repo that has uninstalled features
+					if (feature != null && installed.containsKey(feature)) {
+                        this.uninstallFeature(feature.getName(), feature.getVersion());
+					} else {
+					    LOGGER.info("Feature named '" + feature.getName() + "' with version '" + feature.getVersion() + "' already uninstalled");
+					}
                 }
             }
             internalRemoveRepository(uri);
